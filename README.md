@@ -18,12 +18,20 @@ O resultado final do experimento deve ser exibido em dois gráfico de linha (um 
 
 É contabilizada cada operação aritmética, de atribuição e de comparação para a adição do último nó.
 
-## Para compilar
+## Compilação e geração dos arquivos contendo os dados
 
-Para compilação do presente código no GCC, use:
+Para compilação do código C no GCC, use:
 
  ```gcc -Wall main.c arvore-avl.c arvore-b.c -o teste```
 
- Execute:
+Para geração dos arquivos CSV, execute:
 
  ```./teste```
+
+## Plotagem dos gráficos
+
+Os arquivos CSV podem ser importados em uma planilha Excel para que os gráficos sejam plotados ali.
+
+![img](moderado.png)
+
+![img](pior.png)
