@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "arvore-b.h"
 
-int operacoes_B = 0;
+int operacoes_B;
 
 ArvoreB* criaArvore(int ordem) {
     ArvoreB* a = malloc(sizeof(ArvoreB));
@@ -55,9 +55,8 @@ int pesquisaBinaria(Nob* nob, int chave) {
         operacoes_B++;	        
         if (nob->chaves[meio] == chave) {	
 		    return meio; //encontrou
-            operacoes_B++;
         } else if (nob->chaves[meio] > chave) {
-            operacoes_B++;
+            operacoes_B += 2;
             fim	= meio - 1;	
         } else {
             operacoes_B++;
@@ -178,11 +177,9 @@ void adicionaChaveRecursivo(ArvoreB* arvore, Nob* nob, Nob* novo, int chave) {
 }
 
 int adicionaChave(ArvoreB* arvore, int chave) {
-    int ops;
+    operacoes_B = 0;
     operacoes_B++;
     Nob* nob = localizaNo(arvore, chave);
     adicionaChaveRecursivo(arvore, nob, NULL, chave);
-    ops = operacoes_B;
-    operacoes_B = 0;
-    return ops;
+    return operacoes_B;
 }

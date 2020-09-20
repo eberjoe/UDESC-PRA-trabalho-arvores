@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "arvore-avl.h"
 
-int operacoes_AVL = 0;
+int operacoes_AVL;
 
 int altura(No* no);
 No* balanceamento(No* no);
@@ -192,7 +192,7 @@ No* balanceamento(No* no) {
 }
 
 int adiciona_no(Arvore *arvore, int valor) {
-    int ops;
+    operacoes_AVL = 0;
     operacoes_AVL += 3;
     No* no = malloc(sizeof(No));
     operacoes_AVL++;
@@ -210,9 +210,7 @@ int adiciona_no(Arvore *arvore, int valor) {
         no->pai = NULL;
         operacoes_AVL++;
         arvore->raiz = no;
-        ops = operacoes_AVL;
-        operacoes_AVL = 0;
-        return ops;
+        return operacoes_AVL;
     } else {
         operacoes_AVL += 2;
         No *i = arvore->raiz, *pivo = NULL;
@@ -235,9 +233,7 @@ int adiciona_no(Arvore *arvore, int valor) {
                         operacoes_AVL++;
                         arvore->raiz = pivo;
                     }
-                    ops = operacoes_AVL;
-                    operacoes_AVL = 0;
-                    return ops;
+                    return operacoes_AVL;
                 } else {
                     operacoes_AVL++;
                     i = i->esquerda;
@@ -256,9 +252,7 @@ int adiciona_no(Arvore *arvore, int valor) {
                         operacoes_AVL++;
                         arvore->raiz = pivo;
                     }
-                    ops = operacoes_AVL;
-                    operacoes_AVL = 0;
-                    return ops;
+                    return operacoes_AVL;
                 } else {
                     operacoes_AVL++;
                     i = i->direita;

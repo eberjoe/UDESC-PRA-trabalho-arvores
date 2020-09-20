@@ -26,22 +26,21 @@ int main() {
     char* filename = "pior_caso.csv";
     fp = fopen(filename, "w+");
 
-    // Pior caso (inserção de valores crescentes)
+    // Pior caso (inserção de valores decrescentes)
     fprintf(fp, "AVL, B");
-    for (i = 0; i < 100; i++) {
-        for (j = 0; j < i; j++) {
-            adiciona_no(&arvoreAVL1, j);
-            adicionaChave(arvoreB1, j);
-        }
-        fprintf(fp, "\n%d, %d", adiciona_no(&arvoreAVL1, j), adicionaChave(arvoreB1, j));
+    for (i = 99; i >= 0; i--) {
+        fprintf(fp, "\n%d, %d", adiciona_no(&arvoreAVL1, i), adicionaChave(arvoreB1, i));
     }
     fclose(fp);
 
-    // Reinicializa
+    // Reinicializa 100 árvores de cada tipo para validação estatística de processamento com dados aleatórios
     limpa_subarvore(&arvoreAVL1, arvoreAVL1.raiz);
-    Arvore arvoreAVL2;
-    inicializa_arvore(&arvoreAVL2);
-    ArvoreB* arvoreB2 = criaArvore(2);
+    Arvore arvoreAVL2[100];
+    ArvoreB* arvoreB2[100];
+    for (i = 0; i < 100; i++) {
+        inicializa_arvore(&arvoreAVL2[i]);
+        arvoreB2[i] = criaArvore(2);
+    }
 
     // Prepara novo arquivo CSV
     filename = "caso_moderado.csv";
@@ -51,16 +50,16 @@ int main() {
     fprintf(fp, "AVL, B");
     for (i = 0; i < 100; i++) {
         for (j = 0; j < i; j++) {
-            adiciona_no(&arvoreAVL2, conjuntos[i][j]);
-            adicionaChave(arvoreB2, conjuntos[i][j]);
+            adiciona_no(&arvoreAVL2[i], conjuntos[i][j]);
+            adicionaChave(arvoreB2[i], conjuntos[i][j]);
         }
-        fprintf(fp, "\n%d, %d", adiciona_no(&arvoreAVL2, conjuntos[i][j]), adicionaChave(arvoreB2, conjuntos[i][j]));
+        fprintf(fp, "\n%d, %d", adiciona_no(&arvoreAVL2[i], conjuntos[i][j]), adicionaChave(arvoreB2[i], conjuntos[i][j]));
     }
     fclose(fp);
 
     // Libera memória
-    limpa_subarvore(&arvoreAVL2, arvoreAVL2.raiz);
     for (i = 0; i < 100; i++) {
+        limpa_subarvore(&arvoreAVL2[i], arvoreAVL2[i].raiz);
         free(conjuntos[i]);
     }
 
