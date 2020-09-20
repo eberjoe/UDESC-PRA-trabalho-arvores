@@ -18,6 +18,8 @@ O resultado final do experimento deve ser exibido em dois gráfico de linha (um 
 
 É contabilizada cada operação aritmética, de atribuição e de comparação para a adição do último nó.
 
+## Para compilar
+
 Para compilação do presente código no GCC, use:
 
  ```gcc -Wall main.c arvore-avl.c arvore-b.c -o teste```

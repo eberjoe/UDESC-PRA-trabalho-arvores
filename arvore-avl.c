@@ -192,6 +192,7 @@ No* balanceamento(No* no) {
 }
 
 int adiciona_no(Arvore *arvore, int valor) {
+    int ops;
     operacoes_AVL += 3;
     No* no = malloc(sizeof(No));
     operacoes_AVL++;
@@ -209,7 +210,9 @@ int adiciona_no(Arvore *arvore, int valor) {
         no->pai = NULL;
         operacoes_AVL++;
         arvore->raiz = no;
-        return 1;
+        ops = operacoes_AVL;
+        operacoes_AVL = 0;
+        return ops;
     } else {
         operacoes_AVL += 2;
         No *i = arvore->raiz, *pivo = NULL;
@@ -232,7 +235,9 @@ int adiciona_no(Arvore *arvore, int valor) {
                         operacoes_AVL++;
                         arvore->raiz = pivo;
                     }
-                    return operacoes_AVL;
+                    ops = operacoes_AVL;
+                    operacoes_AVL = 0;
+                    return ops;
                 } else {
                     operacoes_AVL++;
                     i = i->esquerda;
@@ -251,7 +256,9 @@ int adiciona_no(Arvore *arvore, int valor) {
                         operacoes_AVL++;
                         arvore->raiz = pivo;
                     }
-                    return operacoes_AVL;
+                    ops = operacoes_AVL;
+                    operacoes_AVL = 0;
+                    return ops;
                 } else {
                     operacoes_AVL++;
                     i = i->direita;
