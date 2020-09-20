@@ -2,9 +2,11 @@
 
 Trabalho realizado por:
 
-Eber Martins Rodrigues
-Jhony Kennyth Viebrantz
-Laura Gabriela Ziebarth
+[x]Eber Martins Rodrigues
+
+[ ]Jhony Kennyth Viebrantz
+
+[ ]Laura Gabriela Ziebarth
 
 ## Enunciado
 
